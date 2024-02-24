@@ -3,6 +3,17 @@ fake = Faker()
 import random
 from .models import *
 
+def student_Marks(n):
+    stu_obj = Student_details.objects.all()
+    for student in stu_obj:
+        subjects = StudentSubject.objects.all()
+        for subject in subjects:
+            StudentMarks.objects.create(
+                student = student,
+                subject = subject,
+                marks = random.randint(0 ,100)
+            )
+
 def seed_db(n=10) -> None:
     for _ in range(n):
         department_obj = Department.objects.all()

@@ -8,7 +8,12 @@ class Department(models.Model):
     
     class Meta:
         ordering = ['department_name']
-  
+
+class StudentSubject(models.Model):
+    subject_name = models.CharField(max_length = 100)
+     
+    def __str__(self) -> str:
+        return self.subject_name
 
 class Student_details(models.Model):
     department = models.ForeignKey(Department , related_name = "depart" ,on_delete = models.CASCADE)
@@ -24,3 +29,13 @@ class Student_details(models.Model):
     class Meta:
         ordering = ['stu_name']
     
+class StudentMarks(models.Model):
+    student = models.ForeignKey(Student_details , related_name = "student_marks" , on_delete = models.CASCADE)
+    subject = models.ForeignKey(StudentSubject , on_delete = models.CASCADE)
+    marks = models.IntegerField(default = 50)
+    
+    def __str__(self) -> str:
+        return f'{self.student.stu_name} {self.subject.subject_name}'
+    
+    class Meta:
+        unique_together = ['student' , 'subject']
