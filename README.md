@@ -4,6 +4,6 @@
 ...     if queryset[i].stu_id == queryset[i+1].stu_id:
 ...             user = queryset[i]
 ...             user.delete()
-...             i=i-1
+...             i=i+1
 ...     else :
 ...             pass
