@@ -20,5 +20,6 @@ from query_set_practise.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('students/' , get_data , name="get_data")
+    path('students/' , get_data , name="get_data"),
+    path('marks/<student_id>/' , get_marks , name="get_marks")
 ]

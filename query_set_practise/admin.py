@@ -9,4 +9,5 @@ class Stu_marks_display(admin.ModelAdmin):
     list_display = ["student" ,"subject" , "marks"]
 
 admin.site.register(StudentMarks ,Stu_marks_display)
+admin.site.register(Studentrank)
 

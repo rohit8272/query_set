@@ -2,6 +2,17 @@ from faker import Faker
 fake = Faker()
 import random
 from .models import *
+from django.db.models import Avg
+
+def genrate_ranks():
+    i=1
+    ranks = Student_details.objects.annotate(avarage = Avg('student_marks__marks')).order_by('-avarage')
+    for rank in ranks:
+        Studentrank.objects.create(
+            student = rank,
+            student_rank = i
+        )
+        i=i+1
 
 def student_Marks(n):
     stu_obj = Student_details.objects.all()
